@@ -28,7 +28,14 @@ public class RestControllerVoyageur {
     @Autowired
     IVoyageurService iVoyageurservice;
 
-    //http://localhost:8083/SpringMVC/servlet/ajouterVoyage
+    // http://localhost:8089/SpringMVC/servlet/getVoyageurs
+    @GetMapping("/getVoyageurs")
+    @ResponseBody
+    public List<Voyageur> getVoyageurs() {
+        return iVoyageurservice.recupererAll();
+    }
+    
+    //http://localhost:8089/SpringMVC/servlet/ajouterVoyage
     @PostMapping("/ajouterVoyage")
     @ResponseBody
     public void ajouterGare(@RequestBody Voyage voiture) {
@@ -36,21 +43,21 @@ public class RestControllerVoyageur {
     }
 
 
-    ////http://localhost:8083/SpringMVC/servlet/ajouterTrain
+    ////http://localhost:8089/SpringMVC/servlet/ajouterTrain
     @PostMapping("/ajouterTrain")
     @ResponseBody
     public void ajouterTrain(@RequestBody Train train) {
         itrainservice.ajouterTrain(train);
     }
 
-    ////http://localhost:8083/SpringMVC/servlet/ajouterVoyageur
+    ////http://localhost:8089/SpringMVC/servlet/ajouterVoyageur
     @PostMapping("/ajouterVoyageur")
     @ResponseBody
     public void ajouterVoyageur(@RequestBody Voyageur Voyageur) {
         iVoyageurservice.ajouterVoyageur(Voyageur);
     }
 
-    //http://localhost:8083/SpringMVC/servlet/affecterTrainAVoyage/{idtr}/{idvyg}
+    //http://localhost:8089/SpringMVC/servlet/affecterTrainAVoyage/{idtr}/{idvyg}
     @PutMapping(value = "/affecterTrainAVoyage/{idtr}/{idvyg}")
     //1 1  2 2 3 3 4 4
     public void affecterTrainAVoyage(@PathVariable("idtr") Long idTrain, @PathVariable("idvyg") Long idVoyage) {
@@ -64,13 +71,13 @@ public class RestControllerVoyageur {
 //
 //}
 
-    ////http://localhost:8083/SpringMVC/servlet/affecterTrainAVoyageur/1/EZZAHRA/7.45
+    ////http://localhost:8089/SpringMVC/servlet/affecterTrainAVoyageur/1/EZZAHRA/7.45
     @PutMapping(value = "/affecterTrainAVoyageur/{idc}/{nomgdpt}/{nomgarr}/{heuredept}")
     public void affecterTainAVoyageur(@PathVariable("idc") Long idVoyageur, @PathVariable("nomgdpt") Ville nomGareDepart, @PathVariable("nomgarr") Ville nomGareArrivee, @PathVariable("heuredept") double heureDepart) {
         itrainservice.affecterTainAVoyageur(idVoyageur, nomGareDepart, nomGareArrivee, heureDepart);
     }
 
-    //////URL : http://localhost:8083/SpringMVC/servlet/TrainPlacesLibres/TUNIS
+    //////URL : http://localhost:8089/SpringMVC/servlet/TrainPlacesLibres/TUNIS
     @GetMapping(value = "/TrainPlacesLibres/{nomgdpt}")
     public int TrainPlacesLibres(@PathVariable("nomgdpt") Ville nomGareDepart) {
         System.out.println("in controller" + nomGareDepart);
