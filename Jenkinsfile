@@ -75,11 +75,11 @@ stage('Build Docker Image') {
                                             }
 		  }
 	    
-	                      stage('Push Docker Image') {
+	                     /* stage('Push Docker Image') {
                                         steps {
                                    sh 'docker push hibazrig/spring-app:latest'
                                             }
-		  }
+		  }*/
 
 
 		   stage('Run Spring && MySQL Containers') {
